@@ -1,0 +1,266 @@
+  •  ○  ♦  •  ½  ·  ►  ◄   →  ▄  ▀  ■
+
+installed npm package for styled components:-
+import styled from 'styled-components';             // style components:- To use style components, do this:- npm i styled-components
+
+
+installed npm packages for icons:-  material ui icons			(Icon Framework for react UI)
+To install , write:-  npm install @material-ui/core @material-ui/icons
+then we can import icons from the material icons website with given
+import line
+like:  import SearchIcon from '@mui/icons-material/Search';		// To use the search icon on our page
+and instead importing from the above directory, use this if that is no running:-  // import SearchIcon from '@material-ui/icons/Search';
+
+Installed  npm i @material-ui/data-grid 
+                                            For using Sortable Data Table in (Admin -> userList.jsx) to display users.
+
+
+We used axios library (npm package) :- Used for fetching the data from our created API
+                                        		Axios ease the process of writing all the steps to write fetch data which involves promises.
+
+
+installed redux-persist :-  npm i redux-persist
+To persist the changes stored in the redux store,
+i.e. if some state of some redux component like user or cart is saved in redux store, then the changes should be persisted(keep saved)
+even after refresh.
+eg:- The items in cart = 2, then after refresh too, it should be cart.quantity = 2 for that user  
+eg:- If the user is logged in, then after refresh too, the user remained logged in.
+
+
+
+
+ 
+
+ ►  Redux: We used Redux, suppose there is a heirarchy that 
+                        	     App component
+            __________________|__________________                 
+            |                                    		    |
+         Component 1                        		Component 2
+
+  •  So in  React only, if we want to change/update some thing from component 2 to component 1, we cannot directly do this
+    Instead, in react , we have to give this (change/update) info to its parent comeponent(App Component), which will pass this info to the component 1 and change it.
+    Hence flow of update info =>     	 component 2  ===>   App Component  ===> Component 1
+
+  •  But with the help of redux, we can directly change/update some info from component 2 to compoent 1 by changing the state of the info to reflect changes everywhere it is used
+     Hence Now flow of update info =>            component 2   ====>    component 1    
+
+Hence in our project, we used redux for ADD to CART button in product page, where if we click the ADD TO CART button, then that should directly update the cart page   
+
+  •  installed both npm package for redux
+	npm i @reduxjs/toolkit                                  // Used redux toolkit to mutate or update the prevState of products details in cart section after doing ADD to CART button, 
+	npm i react-redux			      //  while if there is just pure redux, then we will not be able to update these prevState of products
+
+  •  The action to change/update is passed to Reducers : (Handle Actions, changes State )
+	which gets passed to 	         Store :  ( Stores the current updated state)
+	which then passed to all the components where the change should occur
+      Hence Flow =>  	Component 2	------------------------------>       Reducer       --------------------->     Store    ------------------------->  Component 1, other Components, etc
+					Action to Change/Update      Handle Action                        Store Update State 			Action(Changes)  Reflected
+	
+  •  Hence in Redux, we create a seperate centralized store.js where we store the current state of the datas
+     And when any component require those datas, it can directly get from store using useSelector() Hook.
+     And when we want to update those data from any component, we can simply call the reducers by dispatching the updated values through useDispatch() Hook.
+
+  •  Deleting the selected data using splice() method of JS like deleting a product from product list in Admin pages.
+
+
+
+Hooks: 
+
+useState, useEffect
+
+UseSelector Hook   
+                    // Used for redux, in Navbar, App component, cart, success, Login pages
+                    // Imported from react - redux
+                    // gets redux state of an element where we can return any property associated to that state
+
+
+useDispatch() Hook
+                    // used in product, login page   
+                    // Imported from react redux
+                    // Used to call the particular reducer to update the data in store through reducers
+
+useHistory() / useNavigate() Hook   
+                    // In v6, useHistory is renamed as useNavigate()
+                    // used in cart page'
+                    // With this, we can navigate to any path we want, using push()
+                    // or we can go to the last page we were there
+
+
+useLocation() Hook
+                    // used in success, productList, product page
+                    // To get the current path
+
+
+useParams() Hook  
+                    // Imported from react-router-dom
+                    // used to get the paramaeters (/:id) from the url
+                  
+useMemo() Hook    
+
+
+Stripe:
+          npm i react-stripe-checkout
+          Stripe from itself provide a great UI for payment after we click the pay button, where we just have to provide the logo/photo, shop name, total price using StripeCheckout
+          using ==>  import StripeCheckout from 'react-stripe-checkout';
+
+          We have created a payment gateway integration using stripe 
+          After creating a payment from the client side, stripe will generate a token showing the details of the payment like the token id, card type, email address
+
+
+.env file 
+           To protect and secure passwords or port number etc.
+           We dont need to download npm package of dotenv (even though I download it) as in react, there is already an dotenv present
+           We just need to name all our variable as REACT_APP_<variaable-name>
+
+
+
+
+Feature:-
+
+Login: 
+        In Login page, if the user is already logged in ,then it will redirect the localhost:3000/login page to home page
+        Also, we are disabling the login button (after user clicked the login button after writing its username and password) till the time the server(auth.js) is verifying the users credentials
+        After veriffication, if the credentials are correct, then login button again become active to use
+                             else if credentials are wrong, page will show "Something went wrong..."
+        
+        When login credentials are correct, it redirect us to Home page ( Hence User Logged In)
+
+
+Firebase:- 
+For uploading images from the desktop/mobile to update the product and user in the admin page, 
+We use firebase where we upload the image and will get a response as image url
+and this url will be uploaded in the mongoDB database as string.
+eg:- Used Firebase in NewProduct.jsx page in admin side, to upload new product image from system and get back image url from firebase.
+And this url is used to store image in database(MongoDB).
+
+
+
+
+
+
+This project took me month long to code it completely
+This project helps me to improve myself technical skill wise but also as a developer too.
+As I learn how to code properly, how to debug, how to quickly learn new things, how to search for an error and resolve them.
+The satisfaction I got by resolving a debug is so good and truly unexplanable.
+
+I have Reused many blocks of codes by making them as components and passing the required data as props to these components
+and hence increase the Reuseablilty of the code and decrease the repeated code
+
+We are using material ui from different React Components like their icons, their Sortable Data Table (used in admin me userList.jsx me)
+
+Maybe Say Things like that I copied the design of the frontend from several different websites to get a proffessional look but I coded it by myself.
+
+In this project, there is many repatitive tasks like in client: Categories --> products       
+                                                                CategoryItem --> ProductItem
+                                                      in Admin:     User --> Product
+                                                                userList --> ProductList
+                                                                newUser  --> newProduct
+which are nearly similar, and have to change just some points only 
+which is kind of problematic for me.
+But these things also made my new concept cleared which I learned here after doing similar tasks. 
+
+
+For proper understanding of my code, to understand the code even after the months, I have properly commented in many areas
+and also I try to make my class name for css Styles by the work that part of code actually doing.
+Like className = "productTopLeft", "productTopRight" , "smallWidget" , "largeWidget" , etc.
+
+
+Problems: 
+  Stripe se payment ho jaa rha h but usko success page me navigate ni ho paa rha h kyunki cart page me useEffect me axios post request ni ho paa rhi h 
+
+
+
+
+
+
+
+
+
+
+
+How to use React:
+
+1). To Use Google Font, 
+            Paste the <link></link> provided for a font from google fonts in index.html file under head tag
+            And Use font family in styling
+
+2). To use External CSS,
+          make a index.css file for all CSS class styles and import it(index.css) in index.js to apply in all Components.
+
+3). To Use Inline CSS:-
+          Pass the inline css styles as an object for the given JSX tag.
+          And write as an key-value pair with pair in " "
+          And key (style-properties) in camelCase.
+          eg:-    <h1 style={ { fontWeight: "bold", color: "red" } } ></h1>
+    
+4). To Use Bootstrap:-
+          Intall npm bootstrap package
+          import bootstrap.min.css file on the page you are gonna use bootstrap (in usually App.js to apply in every component)
+          import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+          Then use className instead of class as usual
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For Responsiveness:-
+  flex-wrap: wrap     // To make kind of responsiveness
+
+
+
+
+
+
+
+
+
+
+
+
+
+Admin Notes:- 
+
+
+Installed :- npm install @material-ui/icons  @material-ui/core
+      For Using icons in our admin react.
+      For using Tables of products, user, etc. with sorting ,etc features
+
+
+Recharts :-
+      A composable charting library built on React components
+      Used to Display Charts
+
+
+npm install timeago.js      // For represent the time from order.createdAt from mongodb in a clear and better way.
+                            // like 2 weeks ago,  1 month ago, etc instead of real date and time for showing details of latest transactions
+                            // used in widgetLarge.jsx in admin > components
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
